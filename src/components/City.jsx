@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+import { useParams, useSearchParams } from "react-router-dom";
 import styles from "./City.module.css";
 
 const formatDate = (date) =>
@@ -9,6 +11,11 @@ const formatDate = (date) =>
   }).format(new Date(date));
 
 function City() {
+  const { id } = useParams();
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  console.log(id);
+
   // TEMP DATA
   const currentCity = {
     cityName: "Lisbon",
@@ -51,9 +58,7 @@ function City() {
         </a>
       </div>
 
-      <div>
-        <ButtonBack />
-      </div>
+      <div></div>
     </div>
   );
 }
