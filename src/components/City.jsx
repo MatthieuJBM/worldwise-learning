@@ -1,6 +1,10 @@
 /* eslint-disable no-unused-vars */
-import { useParams, useSearchParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import styles from "./City.module.css";
+import { useCities } from "../../contexts/CitiesContext";
+import { useEffect } from "react";
+import Spinner from "./Spinner";
+import BackButton from "./BackButton";
 
 const formatDate = (date) =>
   new Intl.DateTimeFormat("en", {
@@ -11,20 +15,29 @@ const formatDate = (date) =>
   }).format(new Date(date));
 
 function City() {
+  //useParams() take the id from the URI then it is used in
+  //useEffect in order to call the getCity() function from
+  //citiesContext.jsx
   const { id } = useParams();
-  const [searchParams, setSearchParams] = useSearchParams();
+  //const [searchParams, setSearchParams] = useSearchParams();
+  //Here the City receives the value updated. It will be then distractured.
+  const { getCity, currentCity, isLoading } = useCities();
 
-  console.log(id);
+  /*We use useEffect in order to call getCity function with
+  the corresponding id obtained from the URI. The useEffect calls
+  the function each time a new id is mounted.*/
+  useEffect(
+    function () {
+      getCity(id);
+    },
+    [id]
+  );
 
-  // TEMP DATA
-  const currentCity = {
-    cityName: "Lisbon",
-    emoji: "🇵🇹",
-    date: "2027-10-31T15:59:59.138Z",
-    notes: "My favorite city so far!",
-  };
-
+  //Here we distructare the currentCity and then it will be
+  //displayed in the UI
   const { cityName, emoji, date, notes } = currentCity;
+
+  if (isLoading) return <Spinner />;
 
   return (
     <div className={styles.city}>
@@ -58,7 +71,9 @@ function City() {
         </a>
       </div>
 
-      <div></div>
+      <div>
+        <BackButton />
+      </div>
     </div>
   );
 }
