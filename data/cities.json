@@ -25,18 +25,6 @@
       "id": 17806751
     },
     {
-      "cityName": "Berlin",
-      "country": "Germany",
-      "emoji": "🇩🇪",
-      "date": "2027-02-12T09:24:11.863Z",
-      "notes": "Amazing 😃",
-      "position": {
-        "lat": 52.53586782505711,
-        "lng": 13.376933665713324
-      },
-      "id": 98443197
-    },
-    {
       "cityName": "Przemysl",
       "country": "Poland",
       "emoji": "🇵🇱",
@@ -47,6 +35,18 @@
         "lng": "22.804870605468754"
       },
       "id": 98443198
+    },
+    {
+      "cityName": "Berlin",
+      "country": "Germany",
+      "emoji": "🇩🇪",
+      "date": "2027-02-12T22:13:31.000Z",
+      "notes": "Amazing 😊",
+      "position": {
+        "lat": "52.45600939264076",
+        "lng": "13.491210937500002"
+      },
+      "id": 98443199
     }
   ]
 }

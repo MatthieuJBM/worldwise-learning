@@ -56,7 +56,22 @@ function CitiesProvider({ children }) {
       setCities((cities) => [...cities, data]);
       //TIME: 17:08
     } catch {
-      alert("There was an error loading data...");
+      alert("There was an error creating city...");
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
+  async function deleteCity(id) {
+    try {
+      setIsLoading(true);
+      await fetch(`${BASE_URL}/cities/${id}`, {
+        method: "DELETE",
+      });
+      //setCities((cities) => [...cities, data]);
+      setCities((cities) => cities.filter((city) => city.id !== id));
+    } catch {
+      alert("There was an error deleting city...");
     } finally {
       setIsLoading(false);
     }
@@ -66,7 +81,14 @@ function CitiesProvider({ children }) {
     /*Here we pass the values to the context value. The City component
     receives the value immediately.*/
     <CitiesContext.Provider
-      value={{ cities, isLoading, currentCity, getCity, createCity }}
+      value={{
+        cities,
+        isLoading,
+        currentCity,
+        getCity,
+        createCity,
+        deleteCity,
+      }}
     >
       {children}
     </CitiesContext.Provider>
