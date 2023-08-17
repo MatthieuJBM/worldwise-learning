@@ -30,7 +30,7 @@ function City() {
     function () {
       getCity(id);
     },
-    [id]
+    [id, getCity]
   );
 
   //Here we distructare the currentCity and then it will be
